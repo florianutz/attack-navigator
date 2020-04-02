@@ -1,0 +1,21 @@
+# Build stage
+
+FROM node:latest
+
+WORKDIR /nav-app/
+
+# copy over needed files
+COPY . ./
+
+# install packages and build
+RUN npm install --unsafe-perm
+
+# Install angular
+RUN npm install -g @angular/cli
+
+# Build static content
+RUN ng build
+
+
+FROM nginx:alpine
+COPY --from=0  /nav-app/dist /usr/share/nginx/html
