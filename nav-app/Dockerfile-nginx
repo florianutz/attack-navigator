@@ -11,10 +11,11 @@ COPY . ./
 RUN npm install --unsafe-perm
 
 # Install angular
-RUN npm install -g @angular/cli
+#RUN npm install -g @angular/cli
 
 # Build static content
-RUN ng build
+#RUN ng build
+RUN npm run ng build
 
 
 FROM nginx:alpine
